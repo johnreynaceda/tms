@@ -81,10 +81,10 @@ class MyRepository extends Component implements HasForms
     {
         $this->repository = StudentRepository::where('student_id', auth()->user()->student->id)->first();
         return view('livewire.student.my-repository', [
-            'advisers'   => TeacherRepository::where('repository_id', $this->repository->id)->where('is_adviser', true)->get(),
-            'panels'     => TeacherRepository::where('repository_id', $this->repository->id)->where('is_panel', true)->get(),
-            'documentss' => RepositoryDocument::where('repository_id', $this->repository->id)->orderBy('created_at', 'DESC')->get(),
-            'feedbacks'  => RepositoryFeedback::where('repository_id', $this->repository->id)->orderByDesc('created_at')->paginate(5),
+            'advisers'   => TeacherRepository::where('repository_id', $this->repository->repository->id)->where('is_adviser', true)->get(),
+            'panels'     => TeacherRepository::where('repository_id', $this->repository->repository->id)->where('is_panel', true)->get(),
+            'documentss' => RepositoryDocument::where('repository_id', $this->repository->repository->id)->orderBy('created_at', 'DESC')->get(),
+            'feedbacks'  => RepositoryFeedback::where('repository_id', $this->repository->repository->id)->orderByDesc('created_at')->paginate(5),
 
         ]);
     }

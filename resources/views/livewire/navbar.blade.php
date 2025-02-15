@@ -103,14 +103,18 @@
                                 class="{{ request()->routeIs('student.dashboard') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
                                 <a href="{{ route('student.dashboard') }}" x-navigate> Dashboard</a>
                             </li>
-                            <li
-                                class="{{ request()->routeIs('student.my-repository') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
-                                <a href="{{ route('student.my-repository') }}" x-navigate> My Repository</a>
-                            </li>
-                            <li
-                                class="{{ request()->routeIs('student.my-schedule') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
-                                <a href="{{ route('student.my-schedule') }}" x-navigate> My Schedule</a>
-                            </li>
+                            @if (auth()->user()->student->studentRepository)
+                                <li
+                                    class="{{ request()->routeIs('student.my-repository') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
+                                    <a href="{{ route('student.my-repository') }}" x-navigate> My Repository</a>
+                                </li>
+                                <li
+                                    class="{{ request()->routeIs('student.my-schedule') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
+                                    <a href="{{ route('student.my-schedule') }}" x-navigate> My Schedule</a>
+                                </li>
+                            @else
+                            @endif
+
 
                         </ul>
                     @break

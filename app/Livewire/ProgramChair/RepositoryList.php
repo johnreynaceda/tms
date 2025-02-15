@@ -138,6 +138,7 @@ class RepositoryList extends Component implements HasForms, HasTable
                     Action::make('schedule')->label('Set Schedule')->action(
                         function ($record, $data) {
 
+                            
                             $teachers = Teachers::whereIn('id', $record->teacherRepositories->pluck('teachers_id')->toArray())->get();
 
                             $repo = RepositorySchedule::create([
@@ -153,6 +154,12 @@ class RepositoryList extends Component implements HasForms, HasTable
                                 return $student->student->firstname . ' ' . $student->student->lastname;
                             })->toArray();
 
+                            $student_email = Student::whereIn('id',$record->studentRepositories->pluck('student_id')->toArray())->get();
+
+                            foreach ($student_email as $key => $value) {
+                                $value->user->notify(new ScheduleNotification($repo_name, $students, $date_time));
+                            }
+
                             foreach ($teachers as $teacher) {
                                 $teacher->user->notify(new ScheduleNotification($repo_name, $students, $date_time));
                             }
@@ -165,7 +172,9 @@ class RepositoryList extends Component implements HasForms, HasTable
                             TimePicker::make('end')->required(),
                         ]),
                     ])->modalWidth('xl'),
-                    EditAction::make('edit')->color('success'),
+                    EditAction::make('edit')->color('success')->form([
+                        Textarea::make('name')->required(),
+                    ])->modalWidth('xl'),
 
                 ]),
 

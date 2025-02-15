@@ -37,7 +37,6 @@ class AdminStudent extends Component implements HasForms, HasTable
                 // ...
             ])
             ->actions([
-                EditAction::make('edit')->color('success'),
             ])
             ->bulkActions([
                 // ...
