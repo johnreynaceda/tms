@@ -54,9 +54,9 @@ class RepositoryView extends Component
     public function deletePost($id){
         RepositoryFeedback::where('id', $id)->delete();
         if (auth()->user()->user_type == 'program_chair') {
-            return redirect()->route('program_chair.repository-view');
+            return redirect()->route('program_chair.repository-view',['id' => $this->repository_id]);
         }else{
-            return redirect()->route('teacher.repository-view');
+            return redirect()->route('teacher.repository-view',['id' => $this->repository_id]);
         }
     }
 
