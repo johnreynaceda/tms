@@ -66,6 +66,11 @@ class MyRepository extends Component implements HasForms
 
     }
 
+    public function deletePost($id){
+        RepositoryFeedback::where('id', $id)->delete();
+        return redirect()->route('student.my-repository');
+    }
+
     public function addUpload()
     {
         sleep(1);

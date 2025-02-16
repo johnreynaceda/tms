@@ -51,6 +51,15 @@ class RepositoryView extends Component
         $this->feedback = null;
     }
 
+    public function deletePost($id){
+        RepositoryFeedback::where('id', $id)->delete();
+        if (auth()->user()->user_type == 'program_chair') {
+            return redirect()->route('program_chair.repository-view');
+        }else{
+            return redirect()->route('teacher.repository-view');
+        }
+    }
+
     public function finalSubmit()
     {
         RepositoryGrade::create([
