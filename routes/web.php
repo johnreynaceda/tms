@@ -68,6 +68,12 @@ Route::prefix('dean')->middleware(['auth', 'verified'])->group( function(){
     Route::get('/students', function () {
         return view('dean.students');
     })->name('dean.students');
+    Route::get('/repository', function () {
+        return view('dean.repository');
+    })->name('dean.repository');
+    Route::get('/repository/{id}', action: function () {
+        return view('dean.repository-view');
+    })->name('dean.repository-view');
 });
 
 Route::prefix('program-chair')->middleware(['auth', 'verified'])->group( function(){

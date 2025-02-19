@@ -57,6 +57,10 @@
                                 class="{{ request()->routeIs('dean.students') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
                                 <a href="{{ route('dean.students') }}" x-navigate> Students</a>
                             </li>
+                            <li
+                                class="{{ request()->routeIs('dean.repository') ? 'text-green-600' : '' }} hover:text-green-600 cursor-pointer h-full flex items-center text-sm font-semibold text-gray-700 tracking-normal">
+                                <a href="{{ route('dean.repository') }}" x-navigate> Repository</a>
+                            </li>
 
                         </ul>
                     @break
